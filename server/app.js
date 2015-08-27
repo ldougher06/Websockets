@@ -18,4 +18,10 @@ io.on('connection', function (socket) {
   socket.on('disconnect', function () {
     console.log('Client disconnected:', socket.id);
   });
+  socket.on('chatMessage', function (msg) {
+    console.log('chat message received', msg);
+    //socket.emit('chatMessage', {toOne: msg});
+    //socket.broadcast.emit('chatMessage',{toOthers: msg});
+    io.emit('chatMessage', msg);
+  });
 });
